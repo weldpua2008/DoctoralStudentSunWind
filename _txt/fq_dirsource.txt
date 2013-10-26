@@ -1,0 +1,79 @@
+clear all
+  script
+%program to plot final result
+n_days=%n_days%;
+ load %dat2_yyy%.yyy
+ 
+% this is kt for period  05-all
+m1=%dat_yyy%(1:n_days,1);
+m2=%dat_yyy%(1:n_days,4);
+
+%this is kt for period 05-07
+m11=%dat_yyy%(1:n_days,2);
+m21=%dat_yyy%(1:n_days,5);
+%this is kt for period 07-all
+m111=%dat_yyy%(1:n_days,3);
+m211=%dat_yyy%(1:n_days,6);
+
+%new
+
+ 
+% this is kt for period  05-all
+n_05all=%n_days05all%;
+
+load %dat2_yyy%05all.yyy
+%y05all=%dat_yyy%05all(1:%n_days05all%,1);
+%m05all=%dat_yyy%05all(1:%n_days05all%,2);
+
+y05all=%dat_yyy%05all(:,1);
+m05all=%dat_yyy%05all(:,2);
+m05alls=%dat_yyy%05all(:,3);
+
+%this is kt for period 05-07
+n_0507=%n_days0507%;
+
+load %dat2_yyy%0507.yyy
+%y0507=%dat_yyy%0507(1:%n_days0507%,1);
+%m0507=%dat_yyy%0507(1:%n_days0507%,2);
+y0507=%dat_yyy%0507(:,1);
+m0507=%dat_yyy%0507(:,2);
+m0507s=%dat_yyy%0507(:,3);
+
+%this is kt for period 07all
+n_07all=%n_days07all%;
+
+load %dat2_yyy%07all.yyy
+%y07all=%dat_yyy%07all(1:%n_days07all%,1);
+%m07all=%dat_yyy%07all(1:%n_days07all%,2);
+
+y07all=%dat_yyy%07all(:,1);
+m07all=%dat_yyy%07all(:,2);
+m07alls=%dat_yyy%07all(:,3);
+
+hold on
+figure(1);
+
+
+plot(m1,'-b');
+plot(m2,'-r');
+ 
+plot(m11,'*y');
+plot(m21,'*g');
+
+plot(m111,'*b');
+plot(m211,'*r');
+axis([1 10 0 1]);
+
+
+ figure(2);
+hold on
+
+plot(y05all,m05all,'-b');
+plot(y05all,m05alls,'-r');
+plot(y07all,m07all,'*y');
+plot(y07all,m07alls,'*g');
+
+ plot(y0507,m0507,'*b');
+ plot(y0507,m0507s,'*r');
+
+axis([12 23 0 1]);

@@ -1,0 +1,65 @@
+clear all
+script
+
+n_realization05=300;
+n_realization0507=300;
+n_realization07=300;
+
+%05all%load %path%dat_%day_sourcename%_05all.yyy
+%07all%load %path%dat_%day_sourcename%_07all.yyy
+%0507%load %path%dat_%day_sourcename%_0507.yyy
+
+ %np - number of points in whole realisations
+ np=600;
+ %sampling frequency (in Hz)
+ fd=20;
+ %duration of whole realisations
+ tp=np/fd;
+
+ % 05-all
+%05all% fr05=dat_%day_sourcename%_05all(:,1);
+%05all%spectr05=dat_%day_sourcename%_05all(:,2);
+
+%05-07
+%0507%fr0507=dat_%day_sourcename%_0507(:,1);
+%0507%spectr0507=dat_%day_sourcename%_0507(:,2);
+
+%07-all
+%07all%fr07=dat_%day_sourcename%_07all(:,1);
+%07all%spectr07=dat_%day_sourcename%_07all(:,2);
+
+
+%calculation points of realisation, corresponding to 3 and 5 Hz (i.e. region where there is no signal, only noise)
+ n_v1=round(3/(fd/np));
+ n_v2=round(5/(fd/np));
+
+%05all%  level_noise1=mean(spectr05(n_v1:n_v2,1));
+%07all%  level_noise2=mean(spectr07(n_v1:n_v2,1));
+
+%0507%  level_noise3=mean(spectr0507(n_v1:n_v2,1));
+
+%05all%  otn=level_noise2/level_noise1;
+
+%0507%  otn2=level_noise2/level_noise3;
+
+%07all%  spectr05=spectr05*otn;
+%0507%  spectr0507=spectr0507*otn2;
+ %size(sdk_kor05);
+ 
+ 
+
+
+
+
+figure(%figure_ind%);
+
+%57all%loglog(fr05(2:300,1),spectr05(2:300,1),'-y',fr07(2:300,1),spectr07(2:300,1),'-g'),grid
+
+%57%loglog(fr05(2:300,1),spectr05(2:300,1),'-y',fr0507(2:300,1),spectr0507(2:300,1),'-r',fr07(2:300,1),spectr07(2:300,1),'-g'),grid
+
+ title('%title%','FontSize',8)
+
+ 
+ 
+ 
+ 

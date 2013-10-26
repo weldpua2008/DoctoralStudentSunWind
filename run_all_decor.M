@@ -1,0 +1,19 @@
+script
+clear variables
+	clear all
+  run processing\data_20071112_20071122\run_decor.M
+clear variables
+	clear all
+  run processing\data_20081217_20081222\run_decor.M
+clear variables
+	clear all
+  run processing\data_20081223_20081229\run_decor.M
+clear variables
+	clear all
+  run processing\data_20091123_20091214\run_decor.M
+clear variables
+	clear all
+  run processing\data_20101129_20101213\run_decor.M
+clear variables
+	clear all
+  run processing\data_20110215_20110221\run_decor.M

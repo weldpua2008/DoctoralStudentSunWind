@@ -1,0 +1,71 @@
+clear all
+script
+
+n_realization05=300;
+n_realization0507=300;
+n_realization07=300;
+
+load dat_%date%_%dir%_ind%n_r05%_05all.yyy
+load dat_%date%_%dir%_ind%n_r07%_07all.yyy
+%load dat_%date%_%dir%_ind%n_r0507%_0507.yyy
+
+ %np - number of points in whole realisations
+ np=600;
+ %sampling frequency (in Hz)
+ fd=20;
+ %duration of whole realisations
+ tp=np/fd;
+
+ % 05-all
+ fr05=dat_%date%_%dir%_ind%n_r05%_05all(:,1);
+spectr05=dat_%date%_%dir%_ind%n_r05%_05all(:,2);
+
+%05-07
+%fr0507=dat_%date%_%dir%_ind%n_r0507%_0507(:,1);
+%spectr0507=dat_%date%_%dir%_ind%n_r0507%_0507(:,2);
+
+%07-all
+fr07=dat_%date%_%dir%_ind%n_r07%_07all(:,1);
+spectr07=dat_%date%_%dir%_ind%n_r07%_07all(:,2);
+
+
+%calculation points of realisation, corresponding to 3 and 5 Hz (i.e. region where there is no signal, only noise)
+ n_v1=round(3/(fd/np));
+ n_v2=round(5/(fd/np));
+
+  level_noise1=mean(spectr05(n_v1:n_v2,1));
+  level_noise2=mean(spectr07(n_v1:n_v2,1));
+
+  %level_noise3=mean(spectr0507(n_v1:n_v2,1));
+
+  otn=level_noise2/level_noise1;
+
+  %otn2=level_noise2/level_noise3;
+
+  spectr05=spectr05*otn;
+  %spectr0507=spectr0507*otn2;
+  %size(sdk_kor05);
+ 
+ 
+
+
+
+
+figure(1);
+set(1,'FileName','%date% %dir%.fig')
+
+loglog(fr05(2:300,1),spectr05(2:300,1),'-y',fr07(2:300,1),spectr07(2:300,1),'-g'),grid
+
+%loglog(fr05(2:300,1),spectr05(2:300,1),'-y',fr0507(2:300,1),spectr0507(2:300,1),'-r',fr07(2:300,1),spectr07(2:300,1),'-g'),grid
+
+hleg = legend('>=05','05-07','>=07.')
+% Make the text of the legend italic and color it brown
+set(hleg,'FontAngle','italic','TextColor',[.3 .2 .1])
+
+
+ title('%date%','FontSize',8)
+
+ 
+ 
+ 
+ 

@@ -1,0 +1,9 @@
+-- Table: 141107DAT
+CREATE TABLE [141107DAT] ( 
+    bar INTEGER        PRIMARY KEY,
+    baz TEXT           UNIQUE,
+    dot INTEGER( 63 )  UNIQUE ON CONFLICT REPLACE 
+);
+
+
+

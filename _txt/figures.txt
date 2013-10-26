@@ -1,0 +1,69 @@
+clear all
+  script
+%program to plot final result
+%n_days=%n_days%;
+load dat_%dat_yyy%.yyy
+
+name_of_source='%dat_yyy%';
+ 
+dayz=dat_%dat_yyy%(:,7);
+dayofz1=(dayz(1));
+
+n_result=size(dayz,1);
+dayofz=num2str(dayofz1);
+startDate=datenum(dayofz,'ddmmyy');
+endDate=startDate+n_result-1;
+i=n_result;
+endD=dayz(i);
+endD1=num2str(endD);
+endDate22=startDate+n_result-1;
+endDatestr=strtok(num2str(endD));
+xData=startDate:endDate;
+xData2=startDate:endDate;
+
+
+ % 05-all
+%m1=dat_%dat_yyy%(1:n_days,1);
+%m2=dat_%dat_yyy%(1:n_days,4);
+m1=dat_%dat_yyy%(:,1);
+m2=dat_%dat_yyy%(:,4);
+
+
+
+%05-07
+%m11=dat_%dat_yyy%(1:n_days,2);
+%m21=dat_%dat_yyy%(1:n_days,5);
+
+m11=dat_%dat_yyy%(:,2);
+m21=dat_%dat_yyy%(:,5);
+
+
+%07-all
+%m111=dat_%dat_yyy%(1:n_days,3);
+%m211=dat_%dat_yyy%(1:n_days,6);
+m111=dat_%dat_yyy%(:,3);
+m211=dat_%dat_yyy%(:,6);
+
+
+hold all
+figure(1);
+set(1,'FileName','%dat_yyy%_scint_index.fig')
+ylabel('index of scintilation')
+
+title_of_fig=strcat('Индекс мерциний для источник ',name_of_source,' в период C: ','      ',dayofz,' по ',endDatestr);
+%title('Индекс мерциний для источника %dat_yyy%','FontSize',8)
+title(title_of_fig,'FontSize',8)
+
+ %plot(xData,m1,'-r');
+ %plot(xData,m2,'-b');
+ 
+ plot(xData,m11,'+y');
+ plot(xData,m21,'+g');
+
+plot(xData,m111,'ob');
+plot(xData,m211,'or');
+
+set(gca,'XTick',xData)
+datetick('x','dd.mm','keepticks')
+%axis([1 %n_days% 0 1]);
+%axis([1 10 0 1]);
